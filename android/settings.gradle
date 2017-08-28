@@ -1,0 +1,3 @@
+rootProject.name = 'patient_tracking_AsyncStorage'
+
+include ':app'
