@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, StyleSheet, FlatList, Picker, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, Button, StyleSheet, FlatList, Picker, AsyncStorage, ScrollView } from 'react-native';
 import styles from '../style'
 
 
@@ -13,7 +13,8 @@ export default class AddPatient extends React.Component {
             nameDesease: '',
             gender: 'male',
             senLevel: 'normal',
-            description: 'n/a'
+            description: 'n/a',
+            setData: []
         };
         this.watchGender = this.watchGender.bind(this);
         this.watchGender = this.watchLevel.bind(this);
@@ -40,7 +41,7 @@ export default class AddPatient extends React.Component {
                 gender: this.state.gender,
                 senLevel: this.state.senLevel,
                 description: this.state.description,
-                setData: []
+                // setData: []
             }
         }
 
@@ -65,13 +66,13 @@ export default class AddPatient extends React.Component {
     }
 
     async setItem(obj) {
-
+    console.log('set item run', obj)
         arrayToPushedData = this.state.setData;
         arrayToPushedData.push(obj);
 
         try {
             await AsyncStorage.setItem('Patients', JSON.stringify(arrayToPushedData));
-            console.log(arrayToPushedData);
+            console.log('arraytopusheddate from set item', arrayToPushedData);
 
         }
         catch (error) {
@@ -103,7 +104,7 @@ export default class AddPatient extends React.Component {
 
     render() {
         return (
-            <View style={styles.container} >
+            <ScrollView style={styles.container} >
                 <Text style={styles.margin20}>Patient Name</Text>
                 <TextInput
                     style={{ height: 40, borderColor: '#eee', borderWidth: 0, }}
@@ -139,10 +140,10 @@ export default class AddPatient extends React.Component {
                 <Button title="Add" style={{
                     flex: 1
                 }} onPress={this.addData.bind(this)} />
-                <Button style={{
+                {/* <Button style={{
                     flex: 1
-                }} title="Show" onPress={this.consoleDate.bind(this)} />
-            </View>
+                }} title="Show" onPress={this.consoleDate.bind(this)} /> */}
+            </ScrollView>
         )
     }
 }

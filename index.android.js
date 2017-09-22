@@ -1,8 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+
 
 import React, { Component } from 'react';
 import {
@@ -16,7 +12,7 @@ import AddPatient from './App/containers/AddPatient.js';
 import ShowPatient from './App/containers/ShowPatient.js';
 import Home from './App/components/Home.js';
 import { TabNavigator, StackNavigator } from "react-navigation";
-
+console.disableYellowBox = true;
 // export default class patient_tracking_AsyncStorage extends Component {
 //   render() {
 //     return (

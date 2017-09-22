@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, FlatList, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, Button, FlatList, AsyncStorage, ScrollView } from 'react-native';
 import styles from '../style'
 import DatePicker from 'react-native-datepicker'
 
@@ -80,19 +80,20 @@ async showData() {
             if (value !== null) {
                 // We have data!!
                 parsedVal = JSON.parse(value);
-                // console.log(parsedVal);
+                console.log ('if run', parsedVal);
                 arrayToPushedData = parsedVal;
                 this.setState({
                     data: arrayToPushedData
                 })
+            }
+            else {
+                console.log('else run')
             }
         } catch (error) {
             // Error retrieving data
             console.log('error get item', error);
         }
     }
-
-
 
     static navigationOptions = {
         title: 'Your Patients',
@@ -105,7 +106,7 @@ async showData() {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <TextInput multiline={true}
                     style={{ height: 40, borderColor: '#eee', borderWidth: 0, }}
                     onChangeText={(text) => this.searchByName(text.toLowerCase())}
@@ -164,7 +165,7 @@ async showData() {
                         </View>
                     }
                 />}
-            </View>
+            </ScrollView>
         )
     }
 }
